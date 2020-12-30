@@ -24,21 +24,11 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /*
-        
-    */
     public function testBasicTest3()
     {
         $response = $this->get('/helloview');
         $response->assertStatus(200);
     }
-
-    public function testBasicTest4()
-    {
-        $response = $this->get('/hello');
-        $response->assertStatus(200);
-    }
-
 
 
     public function testBasicTest5()
