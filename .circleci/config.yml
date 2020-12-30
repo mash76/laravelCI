@@ -8,11 +8,12 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-
-      - image: circleci/mysql:5.7
         environment:
           - DB_CONNECTION: mysql
           - APP_KEY: base64:f7e30cuJbJXZ3ZNY/gF1yk5AAR+GGSJMT1rV2FqOWzA=
+
+      - image: circleci/mysql:5.7
+
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -55,7 +56,7 @@ jobs:
 
       # prepare the database
       - run: touch storage/testing.sqlite
- #     - run: php artisan migrate --env=testing --database=mysql --force
+      - run: php artisan migrate --env=testing --database=mysql --force
 
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit tests/
