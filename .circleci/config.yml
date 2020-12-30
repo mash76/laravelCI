@@ -11,19 +11,11 @@ jobs:
         environment:
           - DB_CONNECTION: mysql
           - APP_KEY: base64:f7e30cuJbJXZ3ZNY/gF1yk5AAR+GGSJMT1rV2FqOWzA=
-          - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
       - image: circleci/mysql:5.7
-
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # Using the RAM variation mitigates I/O contention
-      # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
-      #
-      # - image: redis:2.8.19
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: test_db
 
     steps:
       - checkout
