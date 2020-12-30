@@ -9,9 +9,10 @@ jobs:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
 
-      - image: circleci/mysql:8.0.4
+      - image: circleci/mysql:5.7
         environment:
           - DB_CONNECTION: mysql
+          - APP_KEY: base64:f7e30cuJbJXZ3ZNY/gF1yk5AAR+GGSJMT1rV2FqOWzA=
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -26,7 +27,7 @@ jobs:
       - checkout
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-install zip pdo_mysql
 
       # Download and cache dependencies
       - restore_cache:
@@ -55,7 +56,7 @@ jobs:
       # prepare the database
       - run: touch storage/testing.sqlite
       - run: php artisan key:generate
-     # - run: php artisan migrate --env=testing --database=mysql --force
+      - run: php artisan migrate --env=testing --database=mysql --force
 
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit tests/
