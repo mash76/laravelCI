@@ -11,6 +11,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test_db
+
+
     steps:
     - uses: actions/checkout@v2
 
@@ -34,6 +45,8 @@ jobs:
       run: php artisan key:generate
     - name: phpunit
       run: vendor/bin/phpunit tests/
+
+
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
