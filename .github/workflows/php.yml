@@ -40,11 +40,12 @@ jobs:
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
-      
+
+    - name: laravel env
+      run: cp .env.actions .env      
     - name: laravel
       run: php artisan key:generate
-    - name: laravel env
-      run: cp .env.actions .env
+
     - name: phpunit
       run: vendor/bin/phpunit tests/
 
