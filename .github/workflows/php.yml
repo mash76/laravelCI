@@ -43,6 +43,7 @@ jobs:
       
     - name: laravel
       run: php artisan key:generate
+      run: cp .env.actions .env
     - name: phpunit
       run: vendor/bin/phpunit tests/
 
