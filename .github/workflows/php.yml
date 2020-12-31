@@ -30,6 +30,8 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
       
+    - name: laravel
+      run: php artisan key:generate
     - name: phpunit
       run: vendor/bin/phpunit tests/
 
